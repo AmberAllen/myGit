@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)http://127.0.0.1:8020/%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/0807/%E7%A9%BA/index.html?__hbt=1502073157250 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./index_files/index.css">
+		<link rel="stylesheet" type="text/css" href="./index_files/resert.css">
+	</head>
+	<body>
+		<script>
+//			1。
+			function fn1(){
+				var a = 0;
+				function fn2(){
+					++a;
+					alert(a)
+				}
+				alert(222)
+				return fn2;
+			}
+			fn1()();
+			var newFn = fn1();
+			 
+		</script>
+	
+ 
+</body></html>

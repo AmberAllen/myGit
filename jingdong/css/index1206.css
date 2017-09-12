@@ -1,0 +1,88 @@
+#header a {
+	width: 990px;
+}
+#header .h-logo {
+	display: none;
+}
+.wrap1 .nav {
+	width: 800px;
+}
+.wrap1 .center>div:first-of-type {
+	width: 800px;
+}
+.wrap1 .center .search {
+	width: 348px;
+	background:#fff url(../img/index/camera.png) no-repeat 315px 9px;
+}
+.center .searchBox .form {
+	width: 500px;
+}
+.center .searchBox .buyCar {
+	left: 501px;
+}
+.center .searchBox .form nav {
+	width: 400px;
+}
+.center .left .banner img {
+	width: 590px;
+}
+.center .left {
+	width: 590px;
+}
+.center .smallBanner img {
+		width: 290px;
+		height: 130px;
+}
+.seckill {
+	margin: 0 auto;
+	width:990px;	
+}
+.seckill .poster .ul {
+		width: 800px;
+}
+.findGood {
+	width: 990px;
+}
+.findGood .find {
+	width: 190px;
+}	
+.findGood .find .iconHeader {
+	width: 190px;
+}
+.iconHeader .right {
+	display: none;
+}
+.find .ulBox {
+	width: 190px;
+}
+.find ul {
+	width: 171px;
+	overflow: hidden;
+}
+.couponCenter {
+	width:990px;
+}
+.coUl {
+	width:800px;
+}
+.footBox ul {
+	width: 990px;
+}
+.footBox li {
+	width: 330px;
+}
+.footBox img {
+	margin: 0 ;
+}
+.head-sp-bg {
+	width:990px;
+}
+.eq-left {
+	width: 600px;
+}
+.eq-left>li {
+	width: 290px;
+}
+.enjoy-quality {
+	width: 990px;
+}

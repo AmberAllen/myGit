@@ -1,0 +1,29 @@
+.h-button {
+	display: block;
+}
+#header nav {
+	display: none;
+}
+#header>div {
+	width: 881px;
+	margin: 0 auto;
+}
+.ul-poster {
+	width: 900px;
+}
+.ul-page {
+	width: 880px;
+}
+.card {
+	display: none;
+}
+body .co-ul li:nth-of-type(6n) {
+	margin-right: 0px;
+}
+.companyRe {
+	width:880px;
+}
+
+.footer>div {
+	width: 880px;
+}

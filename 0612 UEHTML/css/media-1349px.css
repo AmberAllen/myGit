@@ -1,0 +1,25 @@
+.h-button {
+	display: none;
+}
+#header nav {
+	display: block;
+}
+#header>div {
+	width: 1181px;
+	margin: 0 auto;
+}
+.ul-poster {
+	width: 1200px;
+}
+.ul-page {
+	width: 1180px;
+}
+.card {
+	display: block;
+}
+.companyRe {
+	width:1180px;
+}
+.footer>div {
+	width: 1180px;
+}

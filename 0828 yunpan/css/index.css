@@ -1,0 +1,402 @@
+h2 {
+	overflow: auto;
+}
+body {
+	background-color: #6ea7b2;
+	padding: 70px;
+}
+.section {
+	position: relative;
+	width: 1200px;
+	height: 711px;
+	background-color: #fff;
+	border-radius: 14px;
+}
+.ypHeader {
+	height: 70px;
+	
+}
+.ypHLeft {
+	float: left;
+}
+.ypHLeft img {
+	width: 45px;
+	height: 31px;
+	margin:18px 21px 0px 28px ;
+}
+.ypHLeft span {
+	font:18px/70px "微软雅黑";
+	color: #359fc9;
+}
+.ypHRight {
+	float: right;
+	padding: 20px 40px 17px 0;
+}
+.ypHRight a {
+	display: block;
+}
+.ypHRight div {
+	float: left;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.ypHRight div img {
+	width: 32px;
+	height: 32px;
+}
+.ypHRight a {
+	float: left;
+	width: 70px;
+	border-right: 1px solid #e4e5e7;
+}
+.ypHRight a i {
+	float: left;
+	width: 11px;
+	height: 8px;
+	margin: 15px 10px 0 10px;
+}
+.ypHRight .ypHRSet {
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin: 8px 10px 0 14px;
+}
+/*******头部导航开始*******/
+.ypNav {
+	height: 58px;
+	border-top: 1px solid #d1d9db;
+	border-bottom: 1px solid #d1d9db;
+	background-color: #edf0f7;
+	
+}
+.ypNLeft {
+	float: left;
+	width: 860px;
+	height: 38px;
+	padding: 10px 0 10px 15px;
+}
+.ypNLeft ul {
+	float: left;
+}
+
+.ypNLeft li {
+	float: left;
+	padding: 11px 25px 11px 21px;
+	margin: 0 5px 0 5px;
+	border: 1px solid #d1d9db;
+	background-color: #fff;
+	font: 14px/14px "微软雅黑";
+	color: #6a7883;
+	border-radius: 4px;
+}
+.ypNLeft li i {
+	margin-right: 18px;
+}
+.ypNIcon{
+	width: 17px;
+	height: 15px;
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px solid #d1d9db;
+	float: left;
+	padding: 10px 11px 9px 11px;
+}
+.ypNLIcon img {
+	width: 17px;
+	height: 15px;
+	
+}
+.ypNRight {
+	padding: 10px 20px 10px  0 	 ;
+	float: right;
+	width: 111px;
+}
+.ypNRight a {
+	float: left;
+	margin-left: 10px;
+	width: 35px;
+	height: 15px;
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px solid #d1d9db;
+	float: left;
+	padding: 10px 11px 9px 11px;
+}
+.ypCenter {
+	height: 581px;
+	/*background-color: salmon;*/
+}
+.ypCLeft  {
+	float: left;
+	width: 258px;
+	height:581px ;
+	border-right: 2px solid #e2e7eb;
+	font: 12px/24px "微软雅黑";
+	color: #627478;
+}
+.ypCLeft ul {
+	/*height: 581px;*/	
+	/*overflow: auto;*/
+	/*margin-left: 20px;*/
+}
+/********************************************************/
+
+/*.ypCLeft li {
+	position: relative;
+}*/
+.ypCLeft h2  {
+	margin-left: 25px;
+	position: relative;
+	font: 16px/36px "微软雅黑";
+}
+/*前面的文件夹*/
+/*.ypCLeft h2:before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(../img/fileIcon.png) no-repeat top left;
+	background-size: 16px 16px;
+	margin: 10px 6px 0 0;
+}*/
+/*
+.ypCLeft h2:after
+ */	
+ .ypCLeft li {
+ 	/*height: 30px;
+ 	background-color: yellow;
+ 	border: 1px solid pink;*/
+ }
+.rightArr .sanjiao{
+	vertical-align: top;
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 38px;
+	background: url(../img/rightArricon.png) no-repeat top left;
+	background-position: center center;
+	/*background-size: 10px 7px;*/
+}
+.downArr .sanjiao{
+	vertical-align: top;
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 38px;
+	background: url(../img/downArricon.png) no-repeat top left;
+	background-position: center center;
+	background-size: 10px 7px;
+}
+.filter { /*这个是没有向右箭头的文件夹样式，即无子文件夹*/
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid pink;
+	background: url(../img/creatNew.png) no-repeat top left;
+	background-position: 0px 0px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+.rightArr .filter {/*这个是有向右箭头的文件夹样式，即有子文件夹*/
+	display: inline-block;
+	border: 1px solid yellow;
+	/*border: 1px solid pink;*/
+	width: 16px;
+	height: 16px;
+	background: url(../img/creatNew.png) no-repeat top left;
+	margin-left: 0px;
+	margin-top: 10px;
+}
+.rightArr+ul{
+	display: none;
+}
+.downArr+ul{
+	display: block;
+}
+
+.downArr .filter {/*这个是有向右箭头的文件夹样式，即有子文件夹*/
+	display: inline-block;
+	border: 1px solid yellow;
+	/*border: 1px solid pink;*/
+	width: 16px;
+	height: 16px;
+	background: url(../img/fileIcon.png) no-repeat top left;
+	margin-left: 0px;
+	margin-top: 10px;
+}
+.ypCLeft h2 i {	
+	position: absolute;
+	top: 17px;
+	left: 0px;
+	width: 10px;
+	height: 7px;
+}
+.ypCLeft h2 .BigIcon {
+		width: 16px;
+		height: 16px;
+		margin: 10px 6px 0 20px;
+}
+
+/********************************************************/
+
+.ypCRight {
+	float: left;
+	width: 940px;
+}
+/*.ypCRight  {
+	position: relative;
+	left: 0;
+	right: 0;
+	padding-left:260px ;
+}*/
+.ypCRHeader {
+	height: 48px;
+	
+	color: #2c302f;
+	border-bottom: 1px solid #e1e9ec;
+	background-color: #fff;
+}
+.ypCRHeader .ypCRHIcon,
+.ypCRHeader .ulbox,
+.ypCRHeader li {
+	float: left;
+}
+.ypCRHeader .ypCRHIcon {
+	padding: 15px 27px 15px 15px;
+	width: 18px;
+	height: 18px;
+	/*background-color: yellow;*/
+	
+}
+.ypCRHeader .ypCRHIcon img {
+	width: 18px;
+	height: 18px;
+}
+.ypCRHeader .ulbox {
+	overflow: hidden;
+}
+.ypCRHeader ul {
+	padding-top: 16px;
+	padding-bottom: 12px;
+	margin-left: -24px;
+}
+.ypCRHeader li i {
+	width: 11px;
+	height: 20px;
+	margin-left: 6px;
+	margin-right: 7px;
+}
+.ypCRHeader li {
+	font-size: 0;
+}
+.ypCRHeader span {
+	font: 14px/20px "微软雅黑";
+	text-align: center;
+	display: inline-block;
+	min-width: 60px;
+}
+.ypCenter section {
+	position: relative;
+	padding: 40px 0 0 40px;
+	height: 492px;
+	background-color: #f6f7fb;
+}
+.ypCenter section ul {
+	height: 532px;
+	/*background-image: url(../img/emptybg.png);*/
+	background-repeat:no-repeat;
+	background-position: 306px 80px;
+}
+.ypCenter section li {
+	padding: 31px 50px 0 50px;
+	position: relative;
+	float: left;
+	width: 80px;
+	height: 149px;
+	background: url(../img/file.png) no-repeat scroll top left;
+	background-position: 50px 33px;
+	background-size: 80px 80px;
+	background-color: #fff;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+.ypCenter section .active{
+	background-color: #ebeff0;
+} 
+.ypCenter section i {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 0px;
+	left: 0px;
+}
+.ypCenter section .poster {
+	width: 80px;
+	height: 80px;
+}
+.ypCenter section i img{
+	width: 16px;
+	height: 16px;
+}
+.ypCenter section span {
+	margin-top: 99px;
+	white-space: nowrap;
+	display: block;
+	width: 80px;
+	text-align: center;
+	font: 14px/14px "微软雅黑";
+	color: #6b747b;
+}
+.ypCenter .edit span {
+	display: none;
+}
+.ypCenter .edit input {
+	display: block;
+}
+.ypCenter section input {
+	margin-top: 99px;
+	white-space: nowrap;
+	display: none;
+	width: 80px;
+	text-align: center;
+	font: 14px/14px "微软雅黑";
+	color: #6b747b;
+}
+.mask {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	height: 24px;
+	border-radius: 20px;
+	padding: 9px 19px 8px 19px;
+	font: 14px/24px "微软雅黑";
+	color: #fff;
+}
+.maskAgain {
+	left: 200px;
+	width: 256px;
+	background-color: #f0898a;
+}
+.maskDelete{
+	left: 500px;
+	background-color: #84cf8c;
+}
+.maskSelect {
+	left:660px;
+	background-color: #f3a960;
+}
+.maskDeleteBox{
+	position: absolute;
+	top: 250px;
+	left: 500px;
+	width: 316px;
+	height: 176px;
+	background-color: #fff;
+	border: 2px solid #53addf;
+	border-radius: 9px;
+}
+.maskDeleteBox header div {
+	float: left;
+}

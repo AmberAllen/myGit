@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/resert.css"/>
+		<script>
+	//		创建一个meta标签
+			var meta =  document.createElement("meta");
+	//		设置name，配置的是视口
+			meta.name = "viewport";
+	//		设置视口的具体参数值
+	
+	//		获取像素比
+			var ra = window.devicePixelRatio;
+	//		alert( ra );
+			var scale = (1/ra).toFixed(1);
+			
+			meta.content = "width=device-width,user-scalable=no,initial-scale="+scale+",minimum-scale="+scale+",maximum-scale="+scale;
+			
+	//		把创建好的meta放到head标签中
+			document.head.appendChild( meta );
+		</script>
+		
+		<!--计算根节点字体大小-->
+		<script>
+		    (function(){
+		    	var html = document.documentElement;
+//		    	var htmlWidth = html.clientWidth;
+		    	var htmlWidth = html.getBoundingClientRect().width;
+		    	console.log(htmlWidth)
+		    	html.style.fontSize = htmlWidth/54+"px";
+		    })()
+		</script>
+	</head>
+	<body>
+		<section class="section">
+			<!--******头部开始******-->
+			<header class="ypHeader clearFix">
+				<h2 class="ypHLeft">
+					<img src="img/cloud.png"/>
+					<span>Snow云盘</span>
+				</h2>
+				<nav class="ypHRight" class="clearFix">
+					<a href="#" class="clearFix">
+						<div>
+							<img src="img/head.png"/>
+						</div>
+						<i>
+							<img src="img/downArr.png"/>
+						</i>
+					</a>
+					<i class="ypHRSet">
+						<img src="img/conf.png"/>
+					</i>
+				</nav>
+			</header>
+			<!--******头部结束***************************************************-->
+			<!--******头部导航开始******-->
+			<nav class="ypNav clearFix">
+				<nav class="ypNLeft clearFix">
+					<ul class="clearFix">
+						<li>
+							<i>
+								<img src="img/downLoad.png"/>
+							</i>
+							<span>下载</span>
+						</li>
+						<li>
+							<i>
+								<img src="img/share.png"/>
+							</i>
+							<span>分享</span>
+						</li>
+						<li>
+							<i>
+								<img src="img/moveTo.png"/>
+							</i>
+							<span>移动到</span>
+						</li>
+						<li>
+							<i>
+								<img src="img/rename.png"/>
+							</i>
+							<span>重命名</span>
+						</li>
+						<li id="del">
+							<i>
+								<img src="img/delete.png"/>
+							</i>
+							<span>删除</span>
+						</li>
+						<li id="add">
+							<i>
+								<img src="img/creatNew.png"/>
+							</i>
+							<span>新建文件夹</span>
+						</li>
+					</ul>
+					<i class="ypNIcon">
+						<img src="img/downLoad.png"/>
+					</i>
+				</nav>
+				<nav class="ypNRight clearFix">
+					<i class="ypNIcon">
+						<img src="img/rightIcon.png"/>
+					</i>
+					<a href="#" class="more">
+						<img src="img/rightIcon2.png"/>
+					</a>
+				</nav>
+			</nav>
+			<!--******头部导航结束***********************************************-->
+			<!--******主体部分开始*****-->
+			<section class="ypCenter clearFix">
+				<!--******左边部分开始*****-->
+				<div class="ypCLeft">
+					<ul class="ypCLul leftList">
+						<!--<li>
+							<h2 class="rightArr">
+								<div class="downArr"></div>
+								<p class="filter"></p>
+								微云
+							</h2>
+							<ul>
+								<li>
+									<h2 class='rightArr'>
+										<div class="sanjiao"></div>
+										<p class="filter"></p>
+										微云
+									</h2>
+									<ul>
+										<li>
+											<h2>
+												<div class="downArr"></div>
+												<p class="filter"></p>
+												123
+											</h2>
+										</li>
+										<li>
+											<h2>
+												<div class="downArr"></div>
+												<p class="filter"></p>
+												333
+											</h2>
+										</li>
+										<li>
+											<h2>
+												<div class="downArr"></div>
+												<p class="filter"></p>
+												CSS课程
+											</h2>
+											<ul>
+												<li>
+													<h2>
+														<div class="downArr"></div>
+														<p class="filter"></p>
+														CSS课程
+													</h2>
+												</li>
+												<li>
+													<h2>
+														<div class="downArr"></div>
+														<p class="filter"></p>
+														123
+													</h2>
+												</li>
+												<li>
+													<h2>
+														<div class="downArr"></div>
+														<p class="filter"></p>
+														JS基础教程
+													</h2>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<h2>
+												<div class="downArr"></div>
+												<p class="filter"></p>
+												11111
+											</h2>
+										</li>
+										<li>
+											<h2>
+												<div class="downArr"></div>
+												<p class="filter"></p>
+												11111
+											</h2>
+										</li>	
+									</ul>
+								</li>
+							</ul>
+						</li>-->
+					</ul>
+				</div>
+				<!--******左边部分结束********************************************-->
+				<!--******右边部分开始*****-->
+				<div class="ypCRight">
+					<!--******头部部分开始*****-->
+					<header class="ypCRHeader clearFix">
+						<i class="ypCRHIcon">
+							<img src="img/checkfalse.png"/>
+						</i>
+						<div class="ulbox clearFix">
+							<ul class="clearFix" id="nav">
+								<!--<li>
+									<i>
+										<img src="img/rightarr.png"/>
+									</i>
+									<span>微云</span>
+								</li>
+								<li>
+									<i>
+										<img src="img/rightarr.png"/>
+									</i>
+									<span>JS课程</span>
+								</li>
+								<li>
+									<i>
+										<img src="img/rightarr.png"/>
+									</i>
+									<span>CSS课程</span>
+								</li>-->
+							</ul>
+						</div>
+					</header>
+					<!--******头部部分结束****************************************-->
+					<!--******主体部分开始*****-->
+					<section>
+						<ul class="clearFix" id="content">
+							<li>
+								<i>
+									<img src="img/checkbox.png"/>
+								</i>
+								<img src="img/file.png" class="poster"/>
+								<span>JS基础课程</span>
+							</li>
+							<li>
+								<i>
+									<img src="img/checkbox.png"/>
+								</i>
+								<img src="img/file.png" class="poster"/>
+								<span>CSS课程</span>
+							</li>
+							<li>
+								<i>
+									<img src="img/checkbox.png"/>
+								</i>
+								<img src="img/file.png" class="poster"/>
+								<span>CSS3课程</span>
+							</li>
+							<li>
+								<i>
+									<img src="img/checkbox.png"/>
+								</i>
+								<img src="img/checkbox.png" class="poster"/>
+								<span>未标题-2</span>
+							</li>
+							<li>
+								<i>
+									<img src="img/checkbox.png"/>
+								</i>
+								<img src="img/file.png" class="poster"/>
+								<span>要回复的贴子</span>
+							</li>
+							<li>
+								<i>
+									<img src="img/checkbox.png"/>
+								</i>
+								<img src="img/file.png" class="poster"/>
+								<span>8-12</span>
+							</li>
+						</ul>
+						<div class="maskDeleteBox">
+							<header class="clearFix">
+								<div class="icon">
+									<img src="img/q.png"/>
+								</div>
+								<div class="text">
+									<h4>确定要删除这个文件夹吗？</h4>
+									<h5>已删除的元素可以在回收站找到</h5>
+								</div>
+							</header>
+							<footer>
+								<button class="yes">确定</button>
+								<button class="no">取消</button>
+							</footer>
+						</div>
+					</section>
+					<!--******主体部分结束****************************************-->
+				</div>
+				<!--******右边部分结束********************************************-->
+			</section>
+			<!--******主体部分结束**************************************8*********-->
+			<div class="mask maskAgain">
+				<i>
+					<img src="img/overtimeIcon.png"/>
+				</i>
+				<span>连接服务器超时，请稍后重试</span>
+			</div>
+			<div class="mask maskDelete">
+				<i>
+					<img src="img/deleteIcon.png"/>
+				</i>
+				<span>删除文件成功</span>
+			</div>
+			<div class="mask maskSelect">
+				<i>
+					<img src="img/pleaseChooseIcon.png"/>
+				</i>
+				<span>请选择文件</span>
+			</div>
+		</section>
+	</body>
+	<script src="js/arr.js"></script>
+	<script src="js/tool.js"></script>
+	<script src="js/index.js"></script>
+	
+</html> 

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<!--需求/bug：1.不能回头√
+				2.撞到自己会死√
+				3.修改不让食物出现在前五个格子（或者进行判断）√
+				4.实时最佳成绩 √
+				5.向上再向右 不动√
+				5.向左再向下 不动√
+				6.加入定时器回头定时器不应该停止√
+				7.右下左右时，最后的右回头√
+				8.暂停按钮按下去 上次按过的扭再按 会不动 其他的可以动
+				9.点击再来一次之后直接点击向下按钮不动,点击向右动
+				10.实时最佳成绩有问题
+		-->
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/resert.css" />
+	</head>
+
+	<body onmousedown="return false">
+		<div id="wrap">
+		</div>
+		<nav>
+			<i id="sTop">
+				<span>上</span>
+			</i>
+			<i id="sRight">
+				<span>右</span>
+			</i>
+			<i id="sLeft">
+				<span>左</span>
+			</i>
+			<i id="sBottom">
+				<span>下</span>
+			</i>
+		</nav>
+		<section id="mask">
+			<p>
+				再来一次
+				<input type="button" value="确定" id="btn" />
+				<i id="xxx">X</i>
+			</p>
+		</section>
+		<section id="best">
+			<p id="bestB"><!--历史纪录：12分--></p>
+			<p id="bestN"><!--最佳：12分--></p>
+		</section>
+		<section id="nowfen" class="clearFix"><!--<p>分数：3600分</p>--></section>
+		<input type="button" id="pause" value="暂停" class="bn-button"/>
+		<input type="button" id="restart" value="重新开始"  class="bn-button"/>
+		<script>
+			var wrap = document.getElementById("wrap");
+			var divs = wrap.getElementsByTagName("div");
+			var sTop = document.getElementById("sTop");
+			var sRight = document.getElementById("sRight");
+			var sLeft = document.getElementById("sLeft");
+			var sBottom = document.getElementById("sBottom");
+			var mask = document.getElementById("mask");
+			var btn = document.getElementById("btn");
+			var best = document.getElementById("best");
+			var bestB = document.getElementById("bestB");
+			var bestN = document.getElementById("bestN");
+			var nowfen = document.getElementById("nowfen");
+			var eatnum = Math.floor(Math.random() * 1200); //1~20的数字
+			var sBest = 0;
+			var beforeNum = 0;
+			var fen = 0;
+			var topInterval = "";
+			var rightInterval = "";
+			var leftInterval = "";
+			var bottomInterval = "";
+			var topIsLooping = false;
+			var leftIsLooping = false;
+			var bottomIsLooping = false;
+			var rightIsLooping = false;
+			//如果出现在蛇身上，则再赋值
+			//				判断是否出现在 蛇身上：
+			//当eatnum的值和数组某一个值相等，则重新赋值 
+			//else 不进行操作 直接将该值赋给eatnum
+			//***函数**点击没效果
+			//向下走的时候不能向上回头
+			function noTop() {
+				sTop.onclick = function() {
+					if((snake[snake.length - 1] - 40) == snake[snake.length - 2]) {} else {
+						noBottom();
+						xiangshang();
+						console.log("分支上")
+					}
+				}
+			}
+			//向左走的时候不能向右回头
+			function noRight() {
+				sRight.onclick = function() {
+					if((snake[snake.length - 1] + 1) == snake[snake.length - 2]) {} else {
+						noLeft();
+						xiangyou();
+						console.log("分支右")
+					}
+				}
+			}
+			//向上走的时候不能向下回头
+			function noBottom() {
+				sBottom.onclick = function() {
+					if((snake[snake.length - 1] + 40) == snake[snake.length - 2]) {} else {
+						noTop();
+						xiangxia();
+						console.log("分支下")
+					}
+				}
+			}
+			//向右走的时候不能向左回头
+			function noLeft() {
+				sLeft.onclick = function() {
+					if((snake[snake.length - 1] - 1) == snake[snake.length - 2]) {} else {
+						noRight();
+						xiangzuo();
+						console.log("分支左")
+					}
+				}
+			}
+			//*****函数*****：判断出现的值是否在蛇的数组里面************************************************
+			function sInsnake() {
+				for(i = 0; i < snake.length; i++) {
+					if(eatnum == snake[i]) {
+						//判断是否此时食物在蛇的身体里了
+						return true;
+					}
+				}
+				return false;
+			}
+			//*****函数*****：创造食物**************************************************************************
+			function chuangzao() {
+				eatnum = Math.floor(Math.random() * 1200);
+				if(sInsnake()) {
+					chuangzao()
+				} else {
+					return eatnum;
+				}
+			}
+			//			alert(1)
+			//*****函数*****：将尾巴删掉*************************************************************************
+			function sNone() {
+				var num = snake.shift();
+				divs[num].style.backgroundColor = "";
+				divs[num].style.opacity = "";
+				divs[num].style.border = "";
+			}
+			//*****函数*****：判断蛇头部是否吃到食物****************************************************************
+			//							(也就是数组最后一位）是否和食物位置相同，若相同，则去掉食物黄色背景的class
+			function sEating() {
+				if(snake[snake.length - 1] == eatnum) { //相同 吃到了食物
+					//					alert ("haha");
+					console.log("chidaole")
+					divs[eatnum].className = "";
+					chuangzao();
+					divs[eatnum].className = "eat";
+					gengxinfenshu();
+					//					fen = snake.length-cLength;
+					//					nowfen.innerHTML = "<p>分数："+fen+"分</p>";
+				} else {
+					sNone();
+				}
+			}
+			//*****函数*****:更新分数*******************************************************************************
+			function gengxinfenshu() {
+				//实时更新本局分数
+				fen = snake.length - cLength;
+				nowfen.innerHTML = "<p>分数：" + fen + "分</p>";
+				//实时更新最佳分数
+				//判断实时分数和最佳分数大小
+				//			alert(fen)
+				if(fen > sBest) {
+					//					alert(1)
+					sBest = fen;
+					bestN.innerHTML = "最佳：" + (sBest) + "分";
+				}
+			}
+			//			alert(3)
+			//*****函数*****:渲染蛇***********************************************************************************
+			function sWalk() {
+				for(i = 0; i < snake.length; i++) {
+					divs[snake[i]].style.opacity = "1";
+					divs[snake[i]].style.border = "none";
+					if(i % 2 == 1) {
+						divs[snake[i]].style.backgroundColor = "salmon";
+					} else {
+						divs[snake[i]].style.backgroundColor = "deeppink";
+					}
+				}
+			}
+			//*****函数*****：清除现有蛇********************************************************************************
+			function snonen() {
+				mask.style.transform = "scale(0)"
+				for(i = 0; i < snake.length; i++) {
+					divs[snake[i]].style.opacity = "";
+					divs[snake[i]].style.border = "";
+					if(i % 2 == 1) {
+						divs[snake[i]].style.backgroundColor = "";
+					} else {
+						divs[snake[i]].style.backgroundColor = "";
+					}
+				}
+			}
+			//*****函数*****：清除现有食物********************************************************************************
+			function noneFood() {
+				divs[eatnum].className = "";
+			}
+			//*****函数*****：跳出"再来一次"提示框*************************************************************************
+			function sBlock() {
+				clearInterval(bottomInterval)
+				clearInterval(topInterval)
+				clearInterval(rightInterval)
+				clearInterval(leftInterval)
+				mask.style.transform = "scale(1)"
+			}
+			//*****函数*****：//判断向上走的时候是否吃到了身体*****************************************************************
+			function eatMyselfT() {
+				for(i = 0; i < snake.length - 1; i++) {
+					if((snake[snake.length - 1] - 40) == snake[i]) {
+						sBlock();
+					}
+				}
+			}
+			//*****函数*****：//判断向下走的时候是否吃到了身体
+			function eatMyselfB() {
+				for(i = 0; i < snake.length - 1; i++) {
+					if((snake[snake.length - 1]) == snake[i]) {
+						sBlock();
+					}
+				}
+			}
+			//*****函数*****：//判断向左走的时候是否吃到了身体
+			function eatMyselfL() {
+				for(i = 0; i < snake.length - 1; i++) {
+					if((snake[snake.length - 1] - 1) == snake[i]) {
+						sBlock();
+					}
+				}
+			}
+			//*****函数*****：//判断向右走的时候是否吃到了身体
+			function eatMyselfR() {
+				for(i = 0; i < snake.length - 1; i++) {
+					if((snake[snake.length - 1] + 1) == snake[i]) {
+						sBlock();
+					}
+				}
+			}
+			//*****函数*****：向右走****************************************************************
+			function xiangyou() {
+				clearInterval(leftInterval)
+				clearInterval(topInterval)
+				clearInterval(bottomInterval)
+				leftIsLooping = false;
+				bottomIsLooping = false;
+				topIsLooping = false;
+				if(!rightIsLooping) {
+					rightIsLooping = true;
+					rightInterval = setInterval(
+						function() {
+							var nnum = snake[snake.length - 1] % 40;
+							//向左走的时候不能向右回头
+							//							if((snake[snake.length - 1] + 1) == snake[snake.length - 2]) {
+							//								//								alert("不能向右回头")
+							//								return
+							//							}
+							//判断向右走的时候是否吃到了身体
+							for(i = 0; i < snake.length - 1; i++) {
+								if((snake[snake.length - 1] + 1) == snake[i]) {
+									sBlock();
+								}
+							}
+							//				eatMyselfR()
+							if(nnum == "39") {
+								sBlock();
+							} else {
+								snake.push(snake[snake.length - 1] + 1);
+								sEating()
+								sWalk();
+							}
+							console.log("右")
+						}, 200
+					)
+				}
+			}
+			//*****函数*****：向上走****************************************************************
+			function xiangshang() {
+				clearInterval(leftInterval)
+				clearInterval(rightInterval)
+				clearInterval(bottomInterval)
+				leftIsLooping = false;
+				bottomIsLooping = false;
+				rightIsLooping = false;
+				if(!topIsLooping) {
+					topIsLooping = true;
+					topInterval = setInterval(
+						function() {
+							var nnum = Math.floor(snake[snake.length - 1] / 40);
+							console.log(snake[snake.length - 1], snake[snake.length - 2])
+							//不要改下面if顺序！！！
+							//向下走的时候向上回头 不能回头
+							//							if((snake[snake.length - 1] - 40) == snake[snake.length - 2]) {
+							//								//					alert("撞")
+							//								alert("不能向上回头")
+							//								return
+							//							}
+							//判断向上走的时候是否吃到了身体
+							for(i = 0; i < snake.length - 1; i++) {
+								if((snake[snake.length - 1] - 40) == snake[i]) {
+									sBlock();
+								}
+							}
+							if(nnum == "0") {
+								sBlock();
+							} else {
+								snake.push(snake[snake.length - 1] - 40);
+								sEating()
+								sWalk(); //渲染蛇-1.判断蛇头是否吃到 2.吃到：不执行删除蛇尾操作 没吃到：执行删除蛇尾操作 3.渲染蛇身
+								//					alert(nnum)
+							}
+						}, 200
+					)
+				}
+			}
+			//*****函数*****：向下走****************************************************************
+			function xiangxia() {
+				clearInterval(leftInterval)
+				clearInterval(topInterval)
+				clearInterval(rightInterval)
+				//				alert(bottomIsLooping)
+				leftIsLooping = false;
+				topIsLooping = false;
+				rightIsLooping = false;
+				if(!bottomIsLooping) {
+					bottomIsLooping = true;
+					bottomInterval = setInterval(
+						function() {
+							var nnum = Math.floor(snake[snake.length - 1] / 40);
+							//向上走的时候向下回头 不能回头
+							//							if((snake[snake.length - 1] + 40) == snake[snake.length - 2]) {
+							//								//								alert("不能向下回头")
+							//								return
+							//							}
+							//判断向下走的时候是否吃到了身体
+							for(i = 0; i < snake.length - 1; i++) {
+								if((snake[snake.length - 1]) == snake[i]) {
+									sBlock();
+								}
+							}
+							if(nnum == "29") {
+								sBlock();
+							} else {
+								snake.push(snake[snake.length - 1] + 40);
+								sEating()
+								sWalk();
+							}
+							console.log("下")
+						}, 200
+					)
+				}
+			}
+			//*****函数*****：向左走****************************************************************
+			function xiangzuo() {
+				clearInterval(bottomInterval)
+				clearInterval(topInterval)
+				clearInterval(rightInterval)
+				topIsLooping = false;
+				bottomIsLooping = false;
+				rightIsLooping = false;
+				if(!leftIsLooping) {
+					leftIsLooping = true;
+					leftInterval = setInterval(
+						function() {
+							var nnum = snake[snake.length - 1] % 40;
+							//向右走的时候向左回头 不能回头
+							//							if((snake[snake.length - 1] - 1) == snake[snake.length - 2]) {
+							//								//								alert("不能向左回头")
+							//								return
+							//							}
+							//判断向左走的时候是否吃到了身体
+							for(i = 0; i < snake.length - 1; i++) {
+								if((snake[snake.length - 1] - 1) == snake[i]) {
+									sBlock();
+								}
+							}
+							//				eatMyselfL()
+							if(nnum == "0") {
+								sBlock();
+							} else {
+								snake.push(snake[snake.length - 1] - 1);
+								sEating()
+								sWalk();
+							}
+							console.log("左")
+						}, 200
+					)
+				}
+			}
+			//*****函数*****清除定时器
+			function clearI(){
+				clearInterval(leftInterval)
+				clearInterval(rightInterval)
+				clearInterval(bottomInterval)
+				clearInterval(topInterval)
+			}
+			//*****函数*****再来一次的时候所有清除复位等****************************************************************
+			function onceAgain() {
+				snonen(); //清除蛇
+				noneFood(); //清除食物
+				clearI();
+				beforeNum = snake.length
+				if(beforeNum > sBest) {
+					sBest = beforeNum;
+				}
+				snake = [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5, 6, 7, 8, 9, 10, 11, 12
+				]
+				chuangzao(); //创造食物
+				divs[eatnum].className = "eat";
+				sWalk(); //创造蛇
+				fen = 0;
+				bestB.innerHTML = "历史纪录：" + (beforeNum - cLength) + "分";
+				bestN.innerHTML = "最佳：" + (sBest - cLength) + "分";
+				//				best.innerHTML = "<p>历史纪录："+(beforeNum-cLength)+"分</p><p>最佳："+(sBest-cLength)+"分</p>";
+				nowfen.innerHTML = "<p>分数：" + fen + "分</p>";
+			}
+//******************************************************函数结束*********************************************************************
+			var str = "";
+			var snake = [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5, 6, 7, 8, 9, 10, 11, 12
+			]
+			var cLength = snake.length;
+			for(i = 0; i < 1200; i++) {
+				str += "<div></div>";
+			}
+			wrap.innerHTML = str;
+			//以下三个 点击再来一次、点击再来一次的XX、点击重新开始
+			btn.onclick = function() {
+				onceAgain();
+			}
+			xxx.onclick = function() {
+				onceAgain();
+			}	
+			restart.onclick = function() {
+				onceAgain();
+			}	
+			pause.onclick = function() {
+				clearI();
+			}	
+			bestB.innerHTML = "历史纪录：" + (beforeNum) + "分";
+			bestN.innerHTML = "最佳：" + (sBest) + "分";
+			//			best.innerHTML = "<p>历史纪录："+beforeNum+"分</p><p>最佳："+sBest+"分</p>";
+			nowfen.innerHTML = "<p>分数：" + fen + "分</p>";
+			console.log(best.innerHTML)
+			//渲染初始的蛇数组
+			sWalk();
+			chuangzao();
+			//			console.log(eatnum)
+			//			将第eatnum个div变成黄色
+			divs[eatnum].className = "eat";
+			//向上***********************************************************************
+			sTop.onclick = function() {
+				noBottom();
+				xiangshang();
+			}
+			//向右***********************************************************************
+			sRight.onclick = function() {
+				noLeft();
+				xiangyou();
+			}
+			//向下***********************************************************************
+			sBottom.onclick = function() {
+				noTop();
+				xiangxia();
+			}
+			//向左***********************************************************************
+			sLeft.onclick = function() {
+				noRight();
+				xiangzuo();
+			}
+		</script>
+		<!--问题：随机出来的食物虽然已经判断是否出现在蛇身，但是偶尔还会出现没有食物得情况(已解决)-->
+	</body>
+
+</html>

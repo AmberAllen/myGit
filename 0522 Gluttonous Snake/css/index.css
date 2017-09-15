@@ -1,0 +1,176 @@
+#wrap {
+	margin: 20px;
+	width:800px ;
+	height:600px ;
+	background: url(../img/bg.png) no-repeat top left;
+	background-size: 800 auto;
+}
+#wrap div {
+	font:9px/9px "微软雅黑";
+	width: 20px;
+	height: 20px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	float: left;
+	opacity: 0.2;
+}
+nav {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 200px;
+	right: 165px;
+	transform: rotate(45deg);
+}
+nav i {
+	/*border-radius: 10px 0 0 0;*/
+	text-align: center;
+	font: 50px/100px "微软雅黑";
+	float: left;
+	width: 100px;
+	height: 100px;
+	border: 1px solid palevioletred;
+	box-sizing: border-box;	
+	/*background-color: greenyellow;*/
+	background: url(../img/bg.png) no-repeat -220px -220px;
+	box-shadow: 0 0 20px 2px palevioletred;
+	/*transform: rotate(-45deg);*/
+}
+nav i:nth-of-type(1){
+	border-radius: 20px 0px 0 0;
+}
+nav i:nth-of-type(2){
+	border-radius: 0px 20px 0 0;
+}
+nav i:nth-of-type(3){
+	/*左                        右上 右下 左下 左上*/    
+	border-radius: 0px 0px 0px 20px;
+}
+nav i:nth-of-type(4){
+	border-radius: 0px 0px 20px 0;
+}
+nav i span {
+	color: palevioletred;
+	display: block;
+	transform: rotate(-45deg);
+	cursor: pointer;
+}
+nav i:hover{
+	/*background-color:salmon;*/
+	background-position: -200px -500px;
+	color: #000;
+}
+.eyes:before{
+	display: block;
+	width: 1px;
+	height: 1px;
+	background-color: #000;
+}
+#wrap .eat {
+	position: relative;
+	background-color: yellow;
+	opacity: 1;
+	border:none;
+	z-index: 999;
+}
+#mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: transparent;
+	transform: scale(0);
+	z-index: 999;
+}
+#mask p {
+	text-align: center;
+	font: 18px/130px "微软雅黑";
+	width: 400px;
+	height: 200px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -130px;
+	background-color: #000;
+	color: #fff;
+}
+#mask p input {
+	width: 80px;
+	height: 30px;
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+}
+#best {
+	position: absolute;
+	top: 25px;
+	right: 140px;
+	width: 250px;
+	height: 100px;
+	border-radius: 10px;
+	background: url(../img/bg.png) no-repeat top left;
+	background-size: 250px auto;
+}
+#best p {
+	text-align: center;
+	width: 150px;
+	font: 18px/28px "微软雅黑";
+	margin: 13px auto;
+	background-color: #efc4e4;
+	color: #db7093;
+	border-radius: 50px;
+}
+#nowfen {
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	width:800px;
+	height: 18px;
+	
+}
+#nowfen p {
+	font: 13px/18px "微软雅黑";
+	text-align: center;
+	border: 1px solid #99afbc;
+	box-sizing: border-box;
+	border-radius: 10px;
+	/*background-color: #004ECD;*/
+	width: 120px;
+	float: right;
+}
+#xxx {
+	font: 13px/13px "agency fb";
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	display: block;
+	border: 1px solid #eee;
+	color: #eee;
+}
+.bn-button {
+	font:24px/60px "微软雅黑";
+	text-align: center;
+	color: #db7093;
+	background: url(../img/bg.png) no-repeat 0px -77px;
+	background-size: 200px auto;
+	width: 160px;
+	height:60px;
+	background-color: yellow;
+	position: absolute;
+	border: none;
+	border-radius: 30px;
+	box-shadow: 0 0 20px 2px palevioletred;
+	right: 186px;
+}
+#pause {
+	top: 470px;
+	
+}
+#restart {
+	top: 560px;
+}
